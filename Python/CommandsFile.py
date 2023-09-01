@@ -2,6 +2,8 @@ project1 = "Intermodal" + " "
 project2 = "Coal Unloading" + " "
 project3 = "Coal Loading" + " "
 
+command_profiles = ["Command List 1", "Command List 2", "Command List 3"]
+
 command_list_v1 = [  # interactive command
     ["100", project1 + "Reset position"],
     ["101", project1 + "Move Forward"],
@@ -18,9 +20,19 @@ command_list_v1 = [  # interactive command
     ["301", project3 + "Toggle Loading Gate"],
 ]
 
-command_list_v2 = [   # freestyle commands
+command_list_v2 = [  # freestyle commands
     ["W", "Move Forward"],
     ["S", "Move Backward"],
     ["A", "Move Left"],
     ["D", "Move Right"]
+]
+
+command_list_v3 = [
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""],
+    ["", ""]
 ]
