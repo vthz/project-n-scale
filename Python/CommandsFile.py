@@ -21,10 +21,10 @@ command_list_v1 = [  # interactive command
 ]
 
 command_list_v2 = [  # freestyle commands
-    ["W", "Move Forward"],
-    ["S", "Move Backward"],
-    ["A", "Move Left"],
-    ["D", "Move Right"]
+    ["W", "Forward"],
+    ["S", "Backward"],
+    ["A", "Left"],
+    ["D", "Right"]
 ]
 
 command_list_v3 = [
