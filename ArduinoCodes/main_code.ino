@@ -11,6 +11,7 @@ bool led3 = false;
 int ledPin1 = 3;
 int ledPin2 = 4;
 int ledPin3 = 5;
+int ledPin4 = 6;
 int analogPin1 = A0;
 
 void setup() {
