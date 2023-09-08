@@ -17,7 +17,10 @@ class App(customtkinter.CTk):
         self.command_dd = customtkinter.CTkComboBox(self, values=self.command_dd_choices,
                                                     command=self.command_dd_callback, text_color="red")
         self.command_dd.pack(side="left", padx=20, pady=20, anchor="nw")
-        self.required_widgets_list = [self.command_dd]
+
+        self.logs_label = customtkinter.CTkLabel(self, height=50, width=100, text="", corner_radius=10)
+        self.logs_label.pack(side="right", padx=20, pady=20, anchor="ne")
+        self.required_widgets_list = [self.command_dd, self.logs_label]
 
     def remove_widgets_on_window(self):
         all_widgets = self.winfo_children()
@@ -25,24 +28,34 @@ class App(customtkinter.CTk):
             if widget not in self.required_widgets_list:
                 widget.destroy()
 
+    def update_logs(self, text):
+        self.logs_label.configure(text=text)
+
     def command_dd_callback(self, choice):
         print("DropDown:", choice)
         self.command_dd.configure(text_color="green")
         if choice == "Command List 1":
             self.remove_widgets_on_window()
+            self.update_logs("Choose " + choice)
             self.CL1Buttons()
         elif choice == "Command List 2":
             self.remove_widgets_on_window()
+            self.update_logs("Choose " + choice)
             self.CL2Buttons()
         elif choice == "Command List 3":
             self.remove_widgets_on_window()
+            self.update_logs("Choose " + choice)
             self.CL3Buttons()
 
     def CL1Buttons(self):
-        self.button1 = customtkinter.CTkButton(self, text="Button 1", command=self.button_callback(), fg_color="green")
-        self.button2 = customtkinter.CTkButton(self, text="Button 2", command=self.button_callback, fg_color="green")
-        self.button3 = customtkinter.CTkButton(self, text="Button 3", command=self.button_callback, fg_color="green")
-        self.button4 = customtkinter.CTkButton(self, text="Button 4", command=self.button_callback, fg_color="green")
+        self.button1 = customtkinter.CTkButton(self, text="Button 1", command=lambda: self.button_callback("F1"),
+                                               fg_color="green")
+        self.button2 = customtkinter.CTkButton(self, text="Button 2", command=lambda: self.button_callback("F2"),
+                                               fg_color="green")
+        self.button3 = customtkinter.CTkButton(self, text="Button 3", command=lambda: self.button_callback("F3"),
+                                               fg_color="green")
+        self.button4 = customtkinter.CTkButton(self, text="Button 4", command=lambda: self.button_callback("F4"),
+                                               fg_color="green")
 
         self.button1.pack(padx=40, pady=5, anchor="nw")
         self.button2.pack(padx=40, pady=5, anchor="nw")
@@ -63,9 +76,8 @@ class App(customtkinter.CTk):
     def CL3Buttons(self):
         pass
 
-    @staticmethod
-    def button_callback():
-        print("button clicked")
+    def button_callback(self, variable):
+        self.update_logs(variable)
 
 
 app = App()
