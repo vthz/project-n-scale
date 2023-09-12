@@ -20,7 +20,6 @@ class App(ct.CTk):
         self.logs_label = ct.CTkLabel(self, text_color="black", text="Welcome!!!")
         self.logs_label.pack(anchor="center")
 
-
         self.speed_slider = ct.CTkSlider(self, from_=0, to=100, number_of_steps=100, width=200)
         self.speed_slider.set(0)
         self.speed_slider.pack(padx=10, pady=10, anchor="center")
@@ -28,7 +27,6 @@ class App(ct.CTk):
     def button_callback(self, variable):
         self.counter_var += 1
         final_var_to_serial = None
-        # print(variable + " " + str(self.counter_var))
         if variable == "Pressed_W":
             final_var_to_serial = "W"
         elif variable == "Pressed_A":
@@ -40,12 +38,12 @@ class App(ct.CTk):
         elif variable == "Pressed_M":
             final_var_to_serial = "M" + ":" + str("{:.2f}".format(self.speed_slider.get()))
         elif variable == "Pressed_1":
-            final_var_to_serial = "1"
+            final_var_to_serial = "LED:1"
         elif variable == "Pressed_2":
-            final_var_to_serial = "2"
+            final_var_to_serial = "LED:2"
         elif variable == "Pressed_3":
-            final_var_to_serial = "3"
-        self.logs_label.configure(text=">-> " + final_var_to_serial)
+            final_var_to_serial = "LED:3"
+        self.logs_label.configure(text="~> " + final_var_to_serial)
         print(final_var_to_serial)
 
 
