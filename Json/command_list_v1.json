@@ -1,0 +1,25 @@
+{
+    "title":"Command List 1",
+    "version":"1.0.0",
+    "button_list":[
+        {
+            "button1":["101", "Forward", "Move forward"],
+            "button2":["102", "Backward", "Move backward"],
+            "button3":["103", "Left", "Move Left"],
+            "button4":["104", "Right", "Move Right"]
+        }
+    ],
+    "analog_list":[
+        {
+            "analog1":["201", "Brightness", "Change L Brightness", 0, 255],
+            "analog2":["202", "Potentiometer", "Potentiometer", 0, 255]
+        }
+    ],
+    "toggle_list":[
+        {
+            "toggle1":["301", "L 1", "Toggle L 1"],
+            "toggle2":["302", "L 2", "Toggle L 2"],
+            "toggle3":["303", "Barricade", "Toggle Barricade"]
+        }
+    ]
+}

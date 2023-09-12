@@ -63,10 +63,14 @@ class App(customtkinter.CTk):
         self.button4.pack(padx=40, pady=5, anchor="nw")
 
     def CL2Buttons(self):
-        self.button1 = customtkinter.CTkButton(self, text="Button 1", command=self.button_callback, fg_color="blue")
-        self.button2 = customtkinter.CTkButton(self, text="Button 2", command=self.button_callback, fg_color="blue")
-        self.button3 = customtkinter.CTkButton(self, text="Button 3", command=self.button_callback, fg_color="blue")
-        self.button4 = customtkinter.CTkButton(self, text="Button 4", command=self.button_callback, fg_color="blue")
+        self.button1 = customtkinter.CTkButton(self, text="Button 1", command=lambda: self.button_callback("F1"),
+                                               fg_color="blue")
+        self.button2 = customtkinter.CTkButton(self, text="Button 2", command=lambda: self.button_callback("F1"),
+                                               fg_color="blue")
+        self.button3 = customtkinter.CTkButton(self, text="Button 3", command=lambda: self.button_callback("F1"),
+                                               fg_color="blue")
+        self.button4 = customtkinter.CTkButton(self, text="Button 4", command=lambda: self.button_callback("F1"),
+                                               fg_color="blue")
 
         self.button1.pack(padx=40, pady=5, anchor="nw")
         self.button2.pack(padx=40, pady=5, anchor="nw")
@@ -74,7 +78,19 @@ class App(customtkinter.CTk):
         self.button4.pack(padx=40, pady=5, anchor="nw")
 
     def CL3Buttons(self):
-        pass
+        self.button1 = customtkinter.CTkButton(self, text="Button 1", command=lambda: self.button_callback("F1"),
+                                               fg_color="red")
+        self.button2 = customtkinter.CTkButton(self, text="Button 2", command=lambda: self.button_callback("F2"),
+                                               fg_color="red")
+        self.button3 = customtkinter.CTkButton(self, text="Button 3", command=lambda: self.button_callback("F3"),
+                                               fg_color="red")
+        self.button4 = customtkinter.CTkButton(self, text="Button 4", command=lambda: self.button_callback("F4"),
+                                               fg_color="red")
+
+        self.button1.pack(padx=40, pady=5, anchor="nw")
+        self.button2.pack(padx=40, pady=5, anchor="nw")
+        self.button3.pack(padx=40, pady=5, anchor="nw")
+        self.button4.pack(padx=40, pady=5, anchor="nw")
 
     def button_callback(self, variable):
         self.update_logs(variable)
