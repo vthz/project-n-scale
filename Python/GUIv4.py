@@ -7,12 +7,11 @@ class App(ct.CTk):
     def __init__(self):
         super().__init__()
         self.config_switch = None
-        self.config_analog = None
         self.config_button = None
         self.choose_json_config = None
         self.json_file_path = None
         self.welcome_label = None
-        self.geometry("300x380")
+        self.geometry("400x420")
         self.window_title = "Python GUI v4"
         self.title(self.window_title)
         self.open_config_chooser_screen()
@@ -65,9 +64,20 @@ class App(ct.CTk):
             label = ct.CTkLabel(self, text=analog[2])
             label.pack(pady=1, anchor="center")
 
-            self.config_analog = ct.CTkSlider(self, from_=analog[4], to=analog[5], number_of_steps=analog[6], width=200)
-            self.config_analog.set(0)
-            self.config_analog.pack(pady=1, anchor="center")
+            analog_id = analog[1]
+            config_analog = ct.CTkSlider(self, from_=analog[4], to=analog[5], number_of_steps=analog[6], width=200)
+            config_analog.set(0)
+            config_analog.pack(pady=1, anchor="center")
+
+            def slider_callback(value, analog_id=analog_id):
+                value_to_send = f"{analog_id}:{int(value)}"
+                self.update_welcome_label(updated_value=value_to_send)
+                self.serial_send_value(value_to_send)
+                print(value_to_send)
+
+            config_analog.configure(
+                command=lambda value=config_analog, analog_id=analog_id: slider_callback(value, analog_id))
+
         toggle_list = data["toggle_list"]
         for toggle in toggle_list:
             self.config_switch = ct.CTkSwitch(self, text=toggle[2], onvalue=True, offvalue=False)
