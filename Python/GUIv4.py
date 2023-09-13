@@ -71,9 +71,7 @@ class App(ct.CTk):
 
             def slider_callback(value, analog_id=analog_id):
                 value_to_send = f"{analog_id}:{int(value)}"
-                self.update_welcome_label(updated_value=value_to_send)
-                self.serial_send_value(value_to_send)
-                print(value_to_send)
+                self.button_callback(value_to_send)
 
             config_analog.configure(
                 command=lambda value=config_analog, analog_id=analog_id: slider_callback(value, analog_id))
