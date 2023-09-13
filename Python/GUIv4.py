@@ -13,24 +13,31 @@ class App(ct.CTk):
         self.json_file_path = None
         self.welcome_label = None
         self.serial_obj = None
-        self.geometry("400x420")
+        self.geometry("600x420")
         self.window_title = "Python GUI v4"
         self.title(self.window_title)
         self.serial_obj = serial_communication.SerialComm()
+        self.configure_grid(3, 6)
         self.open_config_chooser_screen()
         self.required_widgets_list = [self.json_file_path, self.choose_json_config, self.welcome_label]
 
+    def configure_grid(self, row, column):
+        for index in range(row):
+            self.rowconfigure(index, weight=1, uniform="a")
+        for index in range(column):
+            self.columnconfigure(index, weight=1, uniform="a")
+
     def open_config_chooser_screen(self):
         self.welcome_label = ct.CTkLabel(self, text_color="black", text="Welcome!!!")
-        self.welcome_label.pack(anchor="center", pady=5)
+        self.welcome_label.grid(row=0, column=0, padx=2, pady=2)
 
         #  C:/Users/snaiyer/Documents/GitHub/project-n-scale/Json/command_list_v1.json
         self.json_file_path = ct.CTkEntry(self, placeholder_text="Add JSON config file path!", width=200)
-        self.json_file_path.pack(anchor="center", pady=5)
+        self.json_file_path.grid(row=1, column=0, padx=2, pady=2)
 
         self.choose_json_config = ct.CTkButton(self, text="Update", fg_color="red",
                                                command=lambda: self.update_with_json_config("OPEN_CONFIG"))
-        self.choose_json_config.pack(pady=5, anchor="center")
+        self.choose_json_config.grid(row=2, column=0, padx=2, pady=2)
 
     def remove_widgets_on_window(self):
         all_widgets = self.winfo_children()
@@ -55,22 +62,22 @@ class App(ct.CTk):
 
     def create_ui_with_config(self, data):
         button_list = data["button_list"]
-        for button in button_list:
+        for index, button in enumerate(button_list):
             button_id = button[1]
             self.config_button = ct.CTkButton(self, text=button[2],
                                               command=lambda id=button_id: self.button_callback(id))
-            self.config_button.pack(pady=2, anchor="center")
+            self.config_button.grid(row=index, column=6, padx=5, pady=5)
             self.bind("<" + button[0] + ">", lambda event=None, id=button_id: self.button_callback(id))
 
         analog_list = data["analog_list"]
-        for analog in analog_list:
+        for index, analog in enumerate(analog_list):
             label = ct.CTkLabel(self, text=analog[2])
-            label.pack(pady=1, anchor="center")
+            label.grid(row=index, column=2)
 
             analog_id = analog[1]
             config_analog = ct.CTkSlider(self, from_=analog[4], to=analog[5], number_of_steps=analog[6], width=200)
             config_analog.set(0)
-            config_analog.pack(pady=1, anchor="center")
+            config_analog.grid(row=index, column=3)
 
             def slider_callback(value, analog_id=analog_id):
                 value_to_send = f"{analog_id}:{int(value)}"
@@ -80,9 +87,9 @@ class App(ct.CTk):
                 command=lambda value=config_analog, analog_id=analog_id: slider_callback(value, analog_id))
 
         toggle_list = data["toggle_list"]
-        for toggle in toggle_list:
+        for index, toggle in enumerate(toggle_list):
             self.config_switch = ct.CTkSwitch(self, text=toggle[2], onvalue=True, offvalue=False)
-            self.config_switch.pack(anchor="center")
+            self.config_switch.grid(row=index, column=4)
 
     def update_welcome_label(self, updated_value):
         self.welcome_label.configure(text="--=> " + updated_value)
