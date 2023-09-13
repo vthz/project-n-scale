@@ -1,6 +1,7 @@
 import customtkinter as ct
 import os
 import json
+import SerialCommns as serial_communication
 
 
 class App(ct.CTk):
@@ -11,9 +12,11 @@ class App(ct.CTk):
         self.choose_json_config = None
         self.json_file_path = None
         self.welcome_label = None
+        self.serial_obj = None
         self.geometry("400x420")
         self.window_title = "Python GUI v4"
         self.title(self.window_title)
+        self.serial_obj = serial_communication.SerialComm()
         self.open_config_chooser_screen()
         self.required_widgets_list = [self.json_file_path, self.choose_json_config, self.welcome_label]
 
@@ -22,7 +25,7 @@ class App(ct.CTk):
         self.welcome_label.pack(anchor="center", pady=5)
 
         #  C:/Users/snaiyer/Documents/GitHub/project-n-scale/Json/command_list_v1.json
-        self.json_file_path = ct.CTkEntry(self, placeholder_text="Add JSON config file path!", )
+        self.json_file_path = ct.CTkEntry(self, placeholder_text="Add JSON config file path!", width=200)
         self.json_file_path.pack(anchor="center", pady=5)
 
         self.choose_json_config = ct.CTkButton(self, text="Update", fg_color="red",
@@ -90,7 +93,8 @@ class App(ct.CTk):
         print(variable)
 
     def serial_send_value(self, value_to_send):
-        pass
+        # pass
+        self.serial_obj.write_to_serial(value_to_send)
 
 
 app = App()
