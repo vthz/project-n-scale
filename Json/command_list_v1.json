@@ -8,8 +8,8 @@
             ["d","104", "Right", "Move Right"]
     ],
     "analog_list":[
-            ["N","201", "Brightness", "Change L Brightness", 0, 255, 100],
-            ["M","202", "Potentiometer", "Potentiometer", 0, 255, 10]
+            ["n","201", "Brightness", "Change L Brightness", 0, 255, 100],
+            ["m","202", "Potentiometer", "Potentiometer", 0, 255, 10]
     ],
     "toggle_list":[
             ["1","301", "LED 1", "Toggle L 1"],
