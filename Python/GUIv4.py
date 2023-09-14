@@ -108,8 +108,15 @@ class App(ct.CTk):
 
         toggle_list = data["toggle_list"]
         for toggle in toggle_list:
-            self.config_switch = ct.CTkSwitch(self.frame4, text=toggle[2], onvalue=True, offvalue=False)
-            self.config_switch.pack(anchor="center")
+            switch = ct.CTkSwitch(self.frame4, text=toggle[2], onvalue=True, offvalue=False)
+            switch.pack(anchor="center")
+            callback = lambda switch=switch, toggle=toggle: self.switch_callback(switch, toggle)
+            switch.configure(command=callback)
+
+    def switch_callback(self, switch, toggle):
+        # print(f"Switch '{toggle[2]}' toggled. Current state: {switch.get()}")
+        value_to_send = f"{toggle[2]}:{int(switch.get())}"
+        self.button_callback(value_to_send)
 
     def update_welcome_label(self, updated_value):
         self.welcome_label.configure(text="--=> " + updated_value)
