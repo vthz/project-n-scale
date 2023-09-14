@@ -119,7 +119,11 @@ class App(ct.CTk):
         self.update_welcome_label(updated_value=variable)
 
     def serial_send_value(self, value_to_send):
-        self.serial_obj.write_to_serial(value_to_send)
+        if self.serial_obj.write_to_serial(value_to_send):
+            self.welcome_label.configure(text_color="green")
+        else:
+            self.welcome_label.configure(text_color="red")
+
         print(value_to_send)
 
 

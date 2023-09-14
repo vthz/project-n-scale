@@ -12,5 +12,7 @@ class SerialComm:
     def write_to_serial(self, value):
         try:
             self.SERIAL.write(value.encode)
+            return True
         except:
             print("Serial Communication Error!")
+            return False
