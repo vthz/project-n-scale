@@ -19,6 +19,7 @@ class App(ct.CTk):
         self.welcome_label = None
         self.serial_obj = None
         self.geometry("800x200")
+        self._set_appearance_mode("dark")
         self.resizable(width=False, height=True)
         self.window_title = "Python GUI v4"
         self.title(self.window_title)
@@ -29,11 +30,12 @@ class App(ct.CTk):
                                       self.frame1, self.frame2, self.frame3, self.frame4]
 
     def create_layout_frames(self):
-        self.frame0 = ct.CTkFrame(self, fg_color="grey")
-        self.frame1 = ct.CTkFrame(self.frame0, width=200, corner_radius=0, border_color="red")
-        self.frame2 = ct.CTkFrame(self.frame0, width=200, corner_radius=0)
-        self.frame3 = ct.CTkFrame(self.frame0, width=200, corner_radius=0)
-        self.frame4 = ct.CTkFrame(self.frame0, width=200, corner_radius=0)
+        widgets_color = None
+        self.frame0 = ct.CTkFrame(self, fg_color=widgets_color)
+        self.frame1 = ct.CTkFrame(self.frame0, width=200, corner_radius=0, fg_color=widgets_color)
+        self.frame2 = ct.CTkFrame(self.frame0, width=200, corner_radius=0, fg_color=widgets_color)
+        self.frame3 = ct.CTkFrame(self.frame0, width=200, corner_radius=0, fg_color=widgets_color)
+        self.frame4 = ct.CTkFrame(self.frame0, width=200, corner_radius=0, fg_color=widgets_color)
 
         self.frame0.pack(side="top", fill="both", expand="true", padx=5, pady=5)
         self.frame1.pack(side="left", fill="both", expand="true", padx=2, pady=2)
@@ -66,7 +68,8 @@ class App(ct.CTk):
 
     def update_with_json_config(self, variable):
         # file_path = self.json_file_path.get()
-        file_path = "C:/Users/snaiyer/Documents/GitHub/project-n-scale/Json/command_list_v1.json"
+        # file_path = "C:/Users/snaiyer/Documents/GitHub/project-n-scale/Json/command_list_v1.json"
+        file_path = "C:/Users/SN_adm/Documents/GitHub/project-n-scale/Json/command_list_v1.json"
         self.remove_widgets_on_window()
         if len(file_path) > 0 and os.path.exists(file_path):
             self.welcome_label.configure(text="File Path is valid")
@@ -115,7 +118,7 @@ class App(ct.CTk):
 
     def switch_callback(self, switch, toggle):
         # print(f"Switch '{toggle[2]}' toggled. Current state: {switch.get()}")
-        value_to_send = f"{toggle[2]}:{int(switch.get())}"
+        value_to_send = f"{toggle[1]}:{int(switch.get())}"
         self.button_callback(value_to_send)
 
     def update_welcome_label(self, updated_value):
